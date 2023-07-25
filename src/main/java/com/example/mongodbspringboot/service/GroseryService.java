@@ -27,6 +27,13 @@ public class GroseryService {
 		}
 		return groseryItem;
 	}
+	
+	public GroseryItem updateGrosery(GroseryItem groseryItem) {
+		if(itemRepo.existsById(groseryItem.getId())){
+			return itemRepo.save(groseryItem);
+		}
+		return groseryItem;
+	}
 
 	public List<GroseryItem> listAllGrosery(){
 		return itemRepo.findAll();
@@ -38,6 +45,12 @@ public class GroseryService {
 
 	public boolean checkIdGrosery(String id){
 		return itemRepo.existsById(id);
+	}
+	
+	public void delete(String id) {
+		if(itemRepo.existsById(id)){
+			itemRepo.deleteById(id);
+		}
 	}
 }
 
